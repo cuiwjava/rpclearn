@@ -1,6 +1,9 @@
 package provider;
 
+import framework.Protocol;
+import framework.ProtocolFactory;
 import framework.URL;
+import protocol.http.HttpProtocol;
 import protocol.http.HttpServer;
 import provider.api.HelloService;
 import provider.impl.HelloServiceImpl;
@@ -12,7 +15,7 @@ public class Provider {
 
         // 1.本地注册
         // 服务名：实现类
-         LoadRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
+         LocalRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
 
          // 2.远程注册
          // 服务名
@@ -22,6 +25,9 @@ public class Provider {
         // 3.启动tomcat
         HttpServer httpServer = new HttpServer();
         httpServer.start("localhost", 8080);
+
+        Protocol protocol = ProtocolFactory.getProtocol(url);
+        protocol.start(url);
 
 
     }

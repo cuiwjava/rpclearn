@@ -2,7 +2,7 @@ package protocol.http;
 
 import framework.Invocation;
 import org.apache.commons.io.IOUtils;
-import provider.LoadRegister;
+import provider.LocalRegister;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +22,7 @@ public class HttpServerHandler {
 
             Invocation invocation = (Invocation) ois.readObject();
 
-            Class implClass = LoadRegister.get(invocation.getInterfaceName());
+            Class implClass = LocalRegister.get(invocation.getInterfaceName());
             Method method = implClass.getMethod(invocation.getMethodName(), invocation.getParamTypes());
 
             String result = (String) method.invoke(implClass.newInstance(), invocation.getParams());

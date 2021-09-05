@@ -15,6 +15,8 @@ public class ProxyFactory {
 
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+
                 HttpClient httpClient = new HttpClient();
                 Invocation invocation = new Invocation(interfaceClass.getName(), method.getName(), method.getParameterTypes(), args);
 

@@ -3,7 +3,7 @@ package provider;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoadRegister {
+public class LocalRegister {
     private static Map<String, Class> map = new HashMap<>();
 
     public static void regist(String interfaceName, Class implClass){
